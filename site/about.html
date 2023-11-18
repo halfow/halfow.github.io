@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CoC all hail the leader</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      href="./img/favicon-light.ico"
+      rel="icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      href="./img/favicon-dark.ico"
+      rel="icon"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <script src="./script/rain.js"></script>
+  </head>
+
+  <canvas id="canvas"></canvas>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="./index.html">
+            <picture>
+              <source
+                srcset="./img/cincida-light.png"
+                media="(prefers-color-scheme: light)"
+              />
+              <source
+                srcset="./img/cincida-dark.png"
+                media="(prefers-color-scheme: dark)"
+              />
+              <img title="Home" class="logo" src="./img/cincida-light.png" />
+            </picture>
+          </a>
+        </li>
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="card">
+      <div>
+        <h1>
+          OIOOOOIOOIIOOIOIOIIOIIIOOIIOIOIOOIIOOOOIOIIOIIOIOIIOIOOIOIIOIIIOOOIOOOOOOIOOIOOOOIIOOOOIOIIOIIOOOIIOIIOOOIIOOIOIOIIOIIIOOIIIOOIOOIIIOIOIOIIOOIOO
+        </h1>
+        <h2>Key Drivers</h2>
+        <h3>Organizational Improvements</h3>
+        <p>
+          Key improvements, in my experiance usally comes from comminucation.
+          This for some reason always seems to be the hardest thing whithin a
+          bigger corperation.
+        </p>
+        <h3>Automation</h3>
+        <p>
+          I see automation as a key part of how to keep your corparate bagage
+          down while maximizing your impactwithin the organization.
+        </p>
+      </div>
+      <div class="skills-outer">
+        <div class="skills"></div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./script/TagCloud.js"></script>
+    <script>
+      var texts = [
+        "aerospace",
+        "agile",
+        "architect",
+        "automation",
+        "automotive",
+        "azure",
+        "bash",
+        "bitbucket",
+        "BNF",
+        "c",
+        "c++",
+        "centos",
+        "CI/CD",
+        "confluence",
+        "css",
+        "defence",
+        "developer",
+        "DevOps",
+        "DO-178",
+        "DO-254",
+        "docker",
+        "embeded",
+        "excel",
+        "fastapi",
+        "flask",
+        "fpga",
+        "git",
+        "github",
+        "go",
+        "html",
+        "hugo",
+        "incose",
+        "ISO26262",
+        "jenkins",
+        "jira",
+        "kali",
+        "kanban",
+        "keychain",
+        "ksh",
+        "line manager",
+        "linux",
+        "material",
+        "matlab",
+        "mentorship",
+        "mermaid",
+        "metasploit",
+        "onboarding",
+        "pandas",
+        "PowerShell",
+        "project lead",
+        "pydantic",
+        "pygments",
+        "pytest",
+        "python",
+        "radar",
+        "Raspberry Pi OS",
+        "redhat",
+        "rich",
+        "scrum",
+        "seaborn",
+        "sh",
+        "sphinx",
+        "svn",
+        "system verilog",
+        "tcl",
+        "team lead",
+        "trace32",
+        "training",
+        "ubuntu",
+        "unix",
+        "verilog",
+        "VHDL",
+        "windows",
+        "word",
+        "Xilinx ISE",
+        "Xilinx Vivado",
+        "xpath",
+        "zsh",
+      ];
+      var tc = TagCloud(".skills", texts);
+    </script>
+    <script>
+      // switch style
+      function toDefault() {
+        document.body.classList.remove("light");
+      }
+      function toLight() {
+        document.body.classList.add("light");
+      }
+      // add / remove tag
+      function addTag() {
+        if (!tc) return;
+        texts.push("New");
+        tc.update(texts);
+      }
+      function removeTag() {
+        if (!tc) return;
+        texts.pop();
+        tc.update(texts);
+      }
+      var otherTcs = [];
+      // create and destroy tagcloud
+      function toCreate() {
+        if (otherTcs.length >= 3) return;
+        otherTcs.push(TagCloud(".content", texts));
+      }
+      function toDestroy() {
+        var last = otherTcs[otherTcs.length - 1];
+        if (!last) return;
+        last.destroy();
+        otherTcs.pop();
+      }
+      // pause and resume tagcloud animation
+      function pause() {
+        [].concat(tc, otherTcs).forEach(function (e) {
+          return e.pause();
+        });
+      }
+      function resume() {
+        [].concat(tc, otherTcs).forEach(function (e) {
+          return e.resume();
+        });
+      }
+      // add and remove clickEvent
+      function clickEventHandler(e) {
+        if (e.target.className === "tagcloud--item") {
+          window.open(
+            `https://www.google.com/search?q=${e.target.innerText}`,
+            "_blank",
+          );
+        }
+      }
+      function addClickEvent() {
+        var rootEl = document.querySelector(".content");
+        rootEl.addEventListener("click", clickEventHandler);
+      }
+      function removeClickEvent() {
+        var rootEl = document.querySelector(".content");
+        rootEl.removeEventListener("click", clickEventHandler);
+      }
+    </script>
+
+    <script>
+      const matrixRain = new MatrixRain(
+        (element = document.getElementById("canvas")),
+        (width = window.innerWidth),
+        (height = window.innerHeight),
+        (flowRate = 1),
+        (fps = 15),
+      );
+      window.addEventListener("resize", () => {
+        matrixRain.setCanvasDimensions(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

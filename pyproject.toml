@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools-scm[toml]>=7", "setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "halfow.github.io"
+description = ""
+dynamic = ["version"]
+authors = [{ name = "Benjamin Hallenrud" }]
+
+requires-python = ">=3.12"
+dependencies = [ # As this is a static site generator all deps ar dev deps...
+    "jinja2",
+    "pre-commit",
+    "rich",
+    "Pillow",
+]
+
+[project.license]
+file = "LICENSE"
+
+[project.scripts]
+site-develop = "generator.generate:main"
+img2fav = "generator.tools:img2fav"
+img2transparent = "generator.tools:make_transparent"
+img2invert = "generator.tools:invert_colors"
+text2IO = "generator.tools:text2IO"
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+incubate = ["templates/**/*.j2"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["test"]
+namespaces = false # to disable scanning PEP 420 namespaces (true by default)
+
+[tool.setuptools_scm] # Needed for setuptools-scm to work
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+select = ["B", "C", "E", "F", "G", "I", "Q", "W", "UP", "PL"]
+
+[tool.mypy]
+ignore_missing_imports = true

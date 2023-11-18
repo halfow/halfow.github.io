@@ -7,14 +7,14 @@ from rich.console import Console
 console = Console()
 
 templates = Path(__file__).parent / "templates"
-site = Path(__file__).parent.with_name("site")
+root = Path(__file__).parent.parent
 
 jinja = Environment(loader=FileSystemLoader(templates))
 
 
 def refresh():
     for template in jinja.list_templates():
-        page = (site / template).with_suffix("")
+        page = (root / template).with_suffix("")
         with page.open("w+") as file:
             file.write(jinja.get_template(template).render())
 

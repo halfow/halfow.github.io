@@ -1,28 +1,36 @@
 {% extends 'base.html.j2' %}
 {% block head %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
 {% endblock %}
 {% block title %}all hail the leader{% endblock title %}
 {% block body %}
 <div class="card">
-<div>
-    <h1>
-        OIOOOOIOOIIOOIOIOIIOIIIOOIIOIOIOOIIOOOOIOIIOIIOIOIIOIOOIOIIOIIIOOOIOOOOOOIOOIOOOOIIOOOOIOIIOIIOOOIIOIIOOOIIOOIOIOIIOIIIOOIIIOOIOOIIIOIOIOIIOOIOO
-    </h1>
-    <h2>Key Drivers</h2>
-    <h3>Organizational Improvements</h3>
-    <p>
-        Key improvements, in my experiance usally comes from comminucation.
-        This for some reason always seems to be the hardest thing whithin a bigger corperation.
-    </p>
-    <h3>Automation</h3>
-    <p>
-        I see automation as a key part of how to keep your corparate bagage down while maximizing your impactwithin the
-        organization.
-    </p>
-</div>
-<div class="skills-outer">
-    <div class="skills"></div>
-</div>
+    <div>
+        <h1>
+            Benjamin Hallenrud
+            <a href="https://www.linkedin.com/in/benjamin-hallenrud-8b7190114"><i class="fa fa-linkedin-square"></i></a>
+        </h1>
+        <p><i>Mangagement and Engineering</i></p>
+        <h2>Key Drivers</h2>
+        <h3>Organizational Improvements</h3>
+        <p>
+            Key improvements, in my experiance usally comes from comminucation.
+            This for some reason always seems to be the hardest thing whithin a bigger corperation.
+        </p>
+        <h3>Automation</h3>
+        <p>
+            I see automation as a key part of how to keep your corparate bagage down while maximizing your impactwithin
+            the
+            organization.
+        </p>
+    </div>
+    <br>
+    <div class="skills-outer">
+        <div class="skills"></div>
+    </div>
 </div>
 
 <script type="text/javascript" src="./script/TagCloud.js"></script>
@@ -30,26 +38,32 @@
     var texts = [
         "aerospace",
         "agile",
+        "agresso",
         "architect",
+        "artifactory",
         "automation",
         "automotive",
         "azure",
         "bash",
+        "bazel",
         "bitbucket",
-        "BNF",
+        "bnf",
         "c",
         "c++",
         "centos",
-        "CI/CD",
+        "ci/cd",
         "confluence",
         "css",
         "defence",
         "developer",
-        "DevOps",
-        "DO-178",
-        "DO-254",
+        "devops",
+        "do-178",
+        "do-254",
         "docker",
-        "embeded",
+        "dockercompose",
+        "doors",
+        "embedded",
+        "event planning",
         "excel",
         "fastapi",
         "flask",
@@ -57,11 +71,15 @@
         "git",
         "github",
         "go",
+        "grpc",
         "html",
         "hugo",
         "incose",
-        "ISO26262",
+        "ip-xact",
+        "iso26262",
         "jenkins",
+        "jfrog",
+        "jinja",
         "jira",
         "kali",
         "kanban",
@@ -69,29 +87,44 @@
         "ksh",
         "line manager",
         "linux",
+        "make",
         "material",
         "matlab",
         "mentorship",
         "mermaid",
         "metasploit",
+        "modelsim",
         "onboarding",
         "pandas",
-        "PowerShell",
+        "pert",
+        "planner",
+        "podman",
+        "powerpoint",
+        "powershell",
+        "pre-commit",
+        "prezi",
         "project lead",
         "pydantic",
         "pygments",
         "pytest",
         "python",
         "radar",
-        "Raspberry Pi OS",
+        "raspberry pi os",
         "redhat",
+        "rest",
         "rich",
+        "rtca",
+        "rust",
         "scrum",
         "seaborn",
         "sh",
         "sphinx",
+        "summerinterns",
         "svn",
+        "synplify",
+        "system admin",
         "system verilog",
+        "systemweaver",
         "tcl",
         "team lead",
         "trace32",
@@ -99,14 +132,18 @@
         "ubuntu",
         "unix",
         "verilog",
-        "VHDL",
+        "vhdl",
+        "visio",
+        "vunit",
+        "wbs",
         "windows",
         "word",
-        "Xilinx ISE",
-        "Xilinx Vivado",
+        "xilinx ise",
+        "xilinx vivado",
         "xpath",
         "zsh",
     ];
+
     var tc = TagCloud('.skills', texts);
 </script>
 <script>

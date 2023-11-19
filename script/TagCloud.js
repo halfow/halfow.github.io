@@ -496,9 +496,9 @@
     // rolling radius, unit `px`
     maxSpeed: "slow",
     // rolling max speed, optional: `slow`, `normal`(default), `fast`
-    initSpeed: "slow",
+    initSpeed: "normal",
     // rolling init speed, optional: `slow`, `normal`(default), `fast`
-    direction: 110,
+    direction: 137,
     // rolling init direction, unit clockwise `deg`, optional: `0`(top) , `90`(left), `135`(right-bottom)(default)...
     keep: true,
     // whether to keep rolling after mouse out area, optional: `false`, `true`(default)(decelerate to rolling init speed, and keep rolling with mouse)

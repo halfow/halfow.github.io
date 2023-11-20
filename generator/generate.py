@@ -15,8 +15,11 @@ jinja = Environment(loader=FileSystemLoader(templates))
 def refresh():
     for template in jinja.list_templates():
         page = (root / template).with_suffix("")
-        with page.open("w+") as file:
-            file.write(jinja.get_template(template).render())
+        try:
+            with page.open("w+") as file:
+                file.write(jinja.get_template(template).render())
+        except FileNotFoundError:
+            page.parent.mkdir(parents=True, exist_ok=True)
 
 
 def stats():

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CoC in orbit</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      href="./img/favicon-light.ico"
+      rel="icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      href="./img/favicon-dark.ico"
+      rel="icon"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+    <script src="./script/rain.js"></script>
+    <link rel="stylesheet" href="./css/prism.css" />
+  </head>
+
+  <canvas id="canvas"></canvas>
+
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="./index.html">
+            <picture>
+              <source
+                srcset="./img/cincida-light.png"
+                media="(prefers-color-scheme: light)"
+              />
+              <source
+                srcset="./img/cincida-dark.png"
+                media="(prefers-color-scheme: dark)"
+              />
+              <img title="Home" class="logo" src="./img/cincida-light.png" />
+            </picture>
+          </a>
+        </li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </nav>
+    <div class="card">
+      <picture>
+        <source
+          srcset="./img/tbd-light.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <source
+          srcset="./img/tbd-dark.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        <img class="tbd" src="./img/tbd-light.png" />
+      </picture>
+      <img title="Some thing else" src="./img/moby.png" />
+      <time datetime="2023-11-21">2023-11-21</time>
+      <h1>Let's go to Docker space!</h1>
+      <p>
+        Leave incompatibilities on the ground and take flight. Any application
+        can be placed in a container and forgotten. Although, there are some
+        caveats.
+      </p>
+
+      <h3>Set the stage</h3>
+      <p>
+        Our goal with using docker it's to achieve long term reproducibility and
+        a deployment pipeline easily adoptable to change. We still have the need
+        to be able to run the applications manually outside a CI/CD deployment.
+        For the less techy users the look and feel using the application should
+        be as close to the same as before. You are able to make GUI applications
+        work, buts that will be outside the scope of this article.
+      </p>
+      <h3>Space is void and full of terrors</h3>
+      <p>
+        <i>Always be aware of the trade of's</i>
+        We will trade some speed and quite a lot of space for the benefit of
+        having images easily accessible.
+      </p>
+
+      <h4>pyprojet.toml</h4>
+      <pre>
+    <code class="language-toml">
+
+    [project]
+    name = wrapper-hello
+    </code>
+    </pre>
+
+      <h4>wrapper.py</h4>
+      <pre>
+    <code class="language-python">
+    import pathlib
+
+    test = pathlib.Path("test")
+
+    def apa(kalle: str) -> None:
+      return kalle
+    </code>
+    </pre>
+      <h4>Dockerfile</h4>
+      <pre>
+    <code class="language-docker">
+    FROM Ubuntu
+
+    ENV test
+    RUN --chmod=+2 "ls"
+
+    CMD [a,b,c]
+    </code>
+    </pre>
+    </div>
+    <script src="./script/prism.js"></script>
+
+    <script>
+      const matrixRain = new MatrixRain(
+        (element = document.getElementById("canvas")),
+        (width = window.innerWidth),
+        (height = window.innerHeight),
+        (flowRate = 1),
+        (fps = 15),
+      );
+      window.addEventListener("resize", () => {
+        matrixRain.setCanvasDimensions(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>

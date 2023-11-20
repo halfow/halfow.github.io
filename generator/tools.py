@@ -122,3 +122,31 @@ def text2IO() -> None:
     trans = str.maketrans("10", "IO")
     result = "".join(map("{:08b}".format, map(ord, string))).translate(trans)  # type: ignore
     print(result)
+
+
+def green_screen2transparent():
+    parser = ArgumentParser(description="Greenscreen 2 transparent")
+    parser.add_argument(
+        "path",
+        type=Path,
+        help="path to image",
+    )
+    parser.add_argument(
+        *("-o", "--output"),
+        type=Path,
+        help="output file path",
+    )
+    args = parser.parse_args()
+
+    with Image.open(args.path) as image:
+        rgba = image.convert("RGBA")
+        data = rgba.getdata()
+        new_data = []
+        g_cut = 150
+        new_data = [(255, 255, 255, 0) if g > g_cut and g > b and g > r else (r, g, b, a) for r, g, b, a in data]
+        rgba.putdata(new_data)
+        rgba.save(args.output or args.path.with_stem(args.path.stem + "no_screen"), "PNG")
+
+
+if __name__ == "__main__":
+    green_screen2transparent()

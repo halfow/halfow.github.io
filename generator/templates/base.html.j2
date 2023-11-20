@@ -1,56 +1,48 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <title>CoC{% block title %} {% endblock title %}</title>
-    <link rel="stylesheet" href="./css/style.css" />
-    <link
-      href="./img/favicon-light.ico"
-      rel="icon"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      href="./img/favicon-dark.ico"
-      rel="icon"
-      media="(prefers-color-scheme: dark)"
-    />
-    <script src="https://unpkg.com/htmx.org@1.9.8"></script>
-    <script src="./script/rain.js"></script>
-    {%- block head %}{% endblock %}
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>CoC{% block title %} {% endblock title %}</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link href="./img/favicon-light.ico" rel="icon" media="(prefers-color-scheme: light)" />
+  <link href="./img/favicon-dark.ico" rel="icon" media="(prefers-color-scheme: dark)" />
+  <script src="https://unpkg.com/htmx.org@1.9.8"></script>
+  <script src="./script/rain.js"></script>
+  {%- block head %}{% endblock %}
+</head>
 
-  <canvas id="canvas"></canvas>
+<canvas id="canvas"></canvas>
 
-  <body>
-    <nav>
-      <ul>
-        <li>
-          <a href="./index.html">
-            <picture>
-              <source srcset="./img/cincida-light.png" media="(prefers-color-scheme: light)" />
-              <source srcset="./img/cincida-dark.png" media="(prefers-color-scheme: dark)" />
-              <img title="Home" class="logo" src="./img/cincida-light.png" />
-            </picture>
-          </a>
-        </li>
-        <li><a href="./blog.html">Blog</a></li>
-        <li><a href="./about.html">About</a></li>
-      </ul>
-    </nav>
-    {%- block body %}{% endblock %}
-    <script>
-      const matrixRain = new MatrixRain(
-        (element = document.getElementById("canvas")),
-        (width = window.innerWidth),
-        (height = window.innerHeight),
-        (flowRate = 1),
-        (fps = 15),
-      );
-      window.addEventListener("resize", () => {
-        matrixRain.setCanvasDimensions(window.innerWidth, window.innerHeight);
-      });
-    </script>
-  </body>
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="./index.html">
+          <picture>
+            <source srcset="./img/cincida-light.png" media="(prefers-color-scheme: light)" />
+            <source srcset="./img/cincida-dark.png" media="(prefers-color-scheme: dark)" />
+            <img title="Home" class="logo" src="./img/cincida-light.png" />
+          </picture>
+        </a>
+      </li>
+      <li><a href="./blog.html">Blog</a></li>
+      <li><a href="./about.html">About</a></li>
+    </ul>
+  </nav>
+  {%- block body %}{% endblock %}
+  <script>
+    const matrixRain = new MatrixRain(
+      (element = document.getElementById("canvas")),
+      (width = window.innerWidth),
+      (height = window.innerHeight),
+      (flowRate = 1),
+      (fps = 15),
+    );
+    window.addEventListener("resize", () => {
+      matrixRain.setCanvasDimensions(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
 
 </html>

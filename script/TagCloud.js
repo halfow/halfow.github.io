@@ -295,28 +295,25 @@
             self.mouseX = self.mouseX0; // current distance between the mouse and rolling center x axis
             self.mouseY = self.mouseY0; // current distance between the mouse and rolling center y axis
 
-            var isTouchDevice = window.matchMedia("(hover: hover)");
-            if (!isTouchDevice || isTouchDevice.matches) {
-              // mouseover
-              TagCloud._on(self.$el, "mouseover", function () {
-                self.active = true;
-              });
-              // mouseout
-              TagCloud._on(self.$el, "mouseout", function () {
-                self.active = false;
-              });
-              // mousemove
-              TagCloud._on(
-                self.keep ? window : self.$el,
-                "mousemove",
-                function (ev) {
-                  ev = ev || window.event;
-                  var rect = self.$el.getBoundingClientRect();
-                  self.mouseX = (ev.clientX - (rect.left + rect.width / 2)) / 5;
-                  self.mouseY = (ev.clientY - (rect.top + rect.height / 2)) / 5;
-                },
-              );
-            }
+            // mouseover
+            TagCloud._on(self.$el, "mouseover", function () {
+              self.active = true;
+            });
+            // mouseout
+            TagCloud._on(self.$el, "mouseout", function () {
+              self.active = false;
+            });
+            // mousemove
+            TagCloud._on(
+              self.keep ? window : self.$el,
+              "mousemove",
+              function (ev) {
+                ev = ev || window.event;
+                var rect = self.$el.getBoundingClientRect();
+                self.mouseX = (ev.clientX - (rect.left + rect.width / 2)) / 5;
+                self.mouseY = (ev.clientY - (rect.top + rect.height / 2)) / 5;
+              },
+            );
 
             // update state regularly
             self._next(); // init update state

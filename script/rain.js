@@ -48,9 +48,9 @@ class Strand extends Entity {
 }
 
 class Char extends Entity {
-  static size = 10;
-  static width = 10;
-  static height = 14;
+  static size = 11;
+  static width = 11;
+  static height = 16;
   constructor(x, y, ctx) {
     super(x, y, ctx);
     this.charList = "UX01ZWLH-";
@@ -69,6 +69,9 @@ class Char extends Entity {
   }
   draw() {
     this.ctx.font = Char.size + "px 'Courier New'";
+    this.ctx.shadowOffsetX = 1;
+    this.ctx.shadowOffsetY = 1;
+    this.ctx.shadowColor = "rgba(0, 0, 0, 100)";
     this.ctx.fillStyle = `rgba(0,255,0,${this.alpha})`;
     this.ctx.fillText(this.val, this.pos.x, this.pos.y);
   }

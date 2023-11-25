@@ -40,6 +40,7 @@ a {
 nav {
   z-index: 420;
   background-color: #00000005;
+  -webkit-backdrop-filter: blur(0.1rem);
   backdrop-filter: blur(0.1rem);
   position: fixed; /* Prepared to be able to set: sticky top */
   top: 0;
@@ -57,7 +58,7 @@ nav {
       opacity: 0;
       scale: 0;
       height: 3rem;
-      animation: 0.5s flyIn;
+      animation: 0.5s fadeIn;
       animation-timing-function: easeInExpo;
       animation-fill-mode: forwards;
       &:hover {
@@ -142,12 +143,10 @@ time {
   float: right;
 }
 
-@keyframes flyIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
     scale: 0;
-    rotate: 11deg;
-    transform: translate(97%, 103%);
   }
   100% {
     opacity: 1;

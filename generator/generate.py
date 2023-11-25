@@ -4,12 +4,20 @@ from time import sleep
 from jinja2 import Environment, FileSystemLoader
 from rich.console import Console
 
+PathLike = str | Path
 console = Console()
 
 templates = Path(__file__).parent / "templates"
 root = Path(__file__).parent.parent
 
 jinja = Environment(loader=FileSystemLoader(templates))
+
+
+def raw_content(path):
+    return (root / path).read_text().strip()
+
+
+jinja.globals["include_file"] = raw_content
 
 
 def refresh():

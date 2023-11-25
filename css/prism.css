@@ -16,6 +16,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+  padding: 1rem 0 0 2rem;
 }
 
 @media print {

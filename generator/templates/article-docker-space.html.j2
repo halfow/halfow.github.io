@@ -5,20 +5,10 @@
 {% block title %} in orbit{% endblock title %}
 {% block body %}
 <div class="card">
-  <picture>
-    <source
-      srcset="./img/tbd-light.png"
-      media="(prefers-color-scheme: light)"
-    />
-    <source
-      srcset="./img/tbd-dark.png"
-      media="(prefers-color-scheme: dark)"
-    />
-    <img class="tbd" src="./img/tbd-light.png" />
-  </picture>
   <img title="Some thing else" src="./img/moby.png" />
-  <time datetime="2023-11-21">2023-11-21</time>
+  <time datetime="2023-11-25">2023-11-25</time>
   <h1>Let's go to Docker space!</h1>
+  <p class="TBD">Under construction <i>(draft)</i></p>
   <p>
     Leave incompatibilities on the ground and take flight.
     Any application can be placed in a container and forgotten.
@@ -31,53 +21,93 @@
     change.
     We still have the need to be able to run the applications manually outside a CI/CD deployment.
     For the less techy users the look and feel using the application should be as close to the same as before.
-    You are able to make GUI applications work, buts that will be outside the scope of this article.
   </p>
   <h3>Space is void and full of terrors</h3>
   <p>
-    <i>Always be aware of the trade of's</i>
+    <i>Always be aware of the trade of's.</i>
     We will trade some speed and quite a lot of space for the benefit of having images easily accessible.
+    <i>Run rootless whenever possible</i>.
+    GUI passthrough is possible but the experience is not the best as it will
+    rely on X forwarding.
   </p>
-  {#
-  act as user.
-  considerations of rootless for shared environments.
-  python wrapper.
-  interact
-  break with ctrl+c
-  set timeouts (ci stuff)
-  filter output
-  #}
-  <h4>pyprojet.toml</h4>
+
+  <h3>Example</h3>
+  <i>I have wrapped NeoVim to showcase interactivity. This is a silly choice to show some of the things possible</i>
+
+  <h4>File structure</h4>
   <pre>
-    <code class="language-toml">
-
-    [project]
-    name = wrapper-hello
-    </code>
-    </pre>
-
-  <h4>wrapper.py</h4>
-  <pre>
-    <code class="language-python">
-    import pathlib
-
-    test = pathlib.Path("test")
-
-    def apa(kalle: str) -> None:
-      return kalle
-    </code>
-    </pre>
+  <code class="language-tree">
+  .
+  |-- pyproject.toml
+  |-- nvim
+        |-- __init__.py
+        |-- __main__.py
+        |-- Dockerfile
+        |-- wrapper.py
+  </code>
+  </pre>
+  <p>
+    Basic module setup and project script to handle minimal needs to make installable and provide script entry point.
+  </p>
   <h4>Dockerfile</h4>
   <pre>
     <code class="language-docker">
-    FROM Ubuntu
-
-    ENV test
-    RUN --chmod=+2 "ls"
-
-    CMD [a,b,c]
+{{ include_file("generator/article/docker-space/nvim/Dockerfile") }}
     </code>
-    </pre>
+  </pre>
+  <p>
+    Ubuntu was chosen out of habit. There are other distributions that would help to keep the footprint of the docker
+    down.
+    This should be a consideration for our purposes.
+
+    For longevity and reproducibility you should consider to have a process for publishing and pulling pre build docker
+    images.
+    Rebuilding them like in this example with <b>not</b> give your organization the those benefits even if it still
+    might simplify shared tooling.
+  </p>
+  <h4>wrapper.py</h4>
+  <pre>
+    <code class="language-python">
+{{ include_file("generator/article/docker-space/nvim/wrapper.py") }}
+    </code>
+  </pre>
+  <p>
+    You will have quite a lot of choices to make to fit the exact purpose of the tool you are wrapping.
+    I dearly recommend to read the <a href="https://docs.docker.com/engine/reference/commandline/run/">documentation</a>
+    to solve your needs.
+    The wrapper structure should be able to look the same. I ventured down the path of filtering the output data of the
+    subprocess.
+    This is doable, but the timeout was quite hard to get to work correctly with a poll strategy.
+    The solution for that was way more involved and would have made for a to long and involved example.
+    Noteworthy is that as we mount and change files on the host system we want to set this up such as it runs with the
+    same privileges as the current user.
+    This is only needed on the linux side in a rootful context.
+  </p>
+  <h4>__main__.py</h4>
+  <pre>
+    <code class="language-python">
+{{ include_file("generator/article/docker-space/nvim/__main__.py") }}
+    </code>
+  </pre>
+  <p>
+    <i>
+      First of all sorry. I know that it's bad practice to use this file for actual code...
+      This was done to keep some separation in the example and to get the benefits of having this file
+    </i>
+    This file contains the structural level program and cli.
+  </p>
+  <h4>pyproject.toml</h4>
+  <pre>
+    <code class="language-toml">
+{{ include_file("generator/article/docker-space/pyproject.toml") }}
+    </code>
+  </pre>
+  <p>
+    Minimal example of a instructions to make the scripts a installable pip package.
+    Running <code>pip install .</code> in the root folder will install the wrapper and set the
+    executable script. If you have done the set up of <code>PATH</code> you should be able to use
+    <code>nvim</code> in your terminal and have it execute through the docker wrapper.
+  </p>
 </div>
 <script src="./script/prism.js"></script>
 {% endblock %}

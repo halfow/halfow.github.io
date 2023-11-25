@@ -139,6 +139,14 @@ canvas {
   background-color: var(--select-secondary);
 }
 
+.folder {
+  padding-left: 2rem;
+}
+.TBD {
+  color: red;
+  text-align: center;
+}
+
 time {
   float: right;
 }
